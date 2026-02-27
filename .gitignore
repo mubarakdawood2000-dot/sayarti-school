@@ -1,18 +1,59 @@
-# Build and Release Folders
-bin-debug/
-bin-release/
-[Oo]bj/
-[Bb]in/
+# ==========================================
+# DriveMaster SDK - Professional .gitignore
+# ==========================================
 
-# Other files and folders
-.settings/
+# --- OS Metadata ---
+.DS_Store
+Thumbs.db
+desktop.ini
+$RECYCLE.BIN/
 
-# Executables
-*.swf
-*.air
-*.ipa
-*.apk
+# --- Environment & Secrets ---
+# لا ترفع أبداً مفاتيح التشفير أو إعداداتك الخاصة
+.env
+.env.local
+.env.*.local
+*.pem
+*.key
 
-# Project files, i.e. `.project`, `.actionScriptProperties` and `.flexProperties`
-# should NOT be excluded as they contain compiler settings and other important
-# information for Eclipse / Flash Builder.
+# --- Build Outputs ---
+# استثناء مجلدات بناء الموقع الساكن (Jekyll, Docusaurus, Next.js)
+_site/
+.sass-cache/
+.jekyll-metadata
+.jekyll-cache/
+dist/
+build/
+out/
+.next/
+
+# --- Dependency Managers ---
+# هذه المجلدات يتم تحميلها برمجياً ولا تُرفع للمستودع
+node_modules/
+jspm_packages/
+.pnpm-store/
+.npm/
+vendor/
+
+# --- Editor & IDE Settings ---
+# استثناء إعدادات المحرر لضمان مرونة العمل لكل مطور
+.vscode/*
+!.vscode/extensions.json
+.idea/
+*.swp
+*.swo
+*.sublime-project
+*.sublime-workspace
+
+# --- Logs & Diagnostics ---
+# ملفات السجلات والأخطاء
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# --- Temporary Files ---
+tmp/
+temp/
+.cache/

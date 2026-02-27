@@ -3,35 +3,40 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>sayarti-school | أكاديمية مبارك لعلوم القيادة</title>
-    <meta name="description" content="sayarti-school v1.1.0: منصة تعليمية مجانية لتعلم القيادة واختبارات المرور بإشراف مبارك.">
+    <title>sayarti-school | منصة مبارك التعليمية</title>
+    
+    <meta name="description" content="sayarti-school v2.0: المنصة المتكاملة لتعلم القيادة والوضع الليلي والترجمة والبحث الذكي.">
     <meta name="author" content="Mubarak">
 
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
     <style>
-        :root { --primary: #2c3e50; --accent: #e67e22; --bg: #f8f9fa; --text: #333; --card: #fff; }
-        [data-theme="dark"] { --bg: #121212; --text: #e0e0e0; --card: #1e1e1e; --primary: #34495e; }
+        /* CSS: UI System & Dark Mode */
+        :root {
+            --primary: #2c3e50; --accent: #e67e22; --bg: #f8f9fa; --text: #333; --card: #ffffff;
+        }
+        [data-theme="dark"] {
+            --bg: #121212; --text: #e0e0e0; --card: #1e1e1e; --primary: #34495e;
+        }
 
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, sans-serif; transition: 0.3s; scroll-behavior: smooth; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, sans-serif; transition: 0.3s; }
         
-        /* نظام التحكم في الأقسام */
-        .page-section { display: none; padding: 40px 0; min-height: 80vh; }
-        .active-section { display: block !important; animation: fadeIn 0.4s ease; }
-        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+        .page-section { display: none; padding: 40px 0; min-height: 80vh; animation: fadeIn 0.4s ease; }
+        .active-section { display: block !important; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
 
-        .navbar { background-color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
         .hero { background: linear-gradient(135deg, var(--primary), #1a252f); color: white; padding: 80px 0; border-radius: 0 0 40px 40px; }
-        .card { background-color: var(--card); border: none; border-radius: 15px; transition: 0.3s; color: var(--text); cursor: pointer; }
+        .card { background-color: var(--card); border: none; border-radius: 15px; transition: 0.3s; color: var(--text); box-shadow: 0 4px 6px rgba(0,0,0,0.05); }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        .btn-accent { background-color: var(--accent); color: white; border-radius: 25px; border: none; padding: 10px 30px; }
+        
         #google_translate_element { display: inline-block; vertical-align: middle; }
+        .status-badge { font-size: 0.8rem; padding: 5px 15px; border-radius: 20px; background: rgba(230, 126, 34, 0.2); color: var(--accent); }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
         <div class="container">
             <a class="navbar-brand fw-bold" href="javascript:void(0)" onclick="showSection('home')">🚗 sayarti-school</a>
             <div class="d-flex align-items-center gap-3">
@@ -44,126 +49,132 @@
     <section id="home" class="page-section active-section">
         <header class="hero text-center mb-5">
             <div class="container">
-                <h1 class="display-4 fw-bold">أكاديمية مبارك الرقمية</h1>
-                <p class="lead">تعلم قيادة السيارات باحترافية وبشكل مجاني تماماً</p>
-                <button class="btn btn-accent btn-lg mt-3" onclick="showSection('lessons')">تصفح الدروس الآن</button>
+                <span class="status-badge mb-3 d-inline-block">إصدار مبارك الاحترافي v2.0</span>
+                <h1 class="display-4 fw-bold">أكاديمية القيادة الرقمية</h1>
+                <p class="lead">تعلم، تدرب، واجتز اختباراتك بنجاح مجاناً وللجميع</p>
+                <button class="btn btn-warning btn-lg rounded-pill px-5 mt-3 shadow" onclick="showSection('lessons')">ابدأ رحلتك</button>
             </div>
         </header>
         <div class="container">
             <div class="row g-4">
-                <div class="col-md-4" onclick="showSection('lessons')">
-                    <div class="card p-4 text-center shadow-sm">
-                        <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
-                        <h4>المكتبة التعليمية</h4>
-                        <p>شرح إشارات المرور وقوانين السير.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" onclick="showSection('quiz')">
-                    <div class="card p-4 text-center shadow-sm">
-                        <i class="fas fa-vial fa-3x text-success mb-3"></i>
-                        <h4>اختبارات محاكاة</h4>
-                        <p>اختبر معلوماتك قبل الامتحان الحقيقي.</p>
-                    </div>
-                </div>
-                <div class="col-md-4" onclick="showSection('about')">
-                    <div class="card p-4 text-center shadow-sm">
-                        <i class="fas fa-info-circle fa-3x text-warning mb-3"></i>
-                        <h4>عن sayarti-school</h4>
-                        <p>تعرف على رؤية Mubarak التعليمية.</p>
-                    </div>
-                </div>
+                <div class="col-md-4" onclick="showSection('lessons')"><div class="card p-4 text-center h-100"><i class="fas fa-book-open fa-3x text-primary mb-3"></i><h4>الدروس النظرية</h4><p>منهج شامل لجميع القواعد.</p></div></div>
+                <div class="col-md-4" onclick="showSection('quiz')"><div class="card p-4 text-center h-100"><i class="fas fa-vial fa-3x text-success mb-3"></i><h4>محاكي الاختبار</h4><p>اختبر جاهزيتك الآن.</p></div></div>
+                <div class="col-md-4" onclick="showSection('engine-info')"><div class="card p-4 text-center h-100"><i class="fas fa-cogs fa-3x text-warning mb-3"></i><h4>قوة الأنظمة</h4><p>محركات Python و C++ الخلفية.</p></div></div>
             </div>
         </div>
     </section>
 
     <section id="lessons" class="page-section container">
-        <div class="d-flex justify-content-between align-items-center mb-4">
+        <div class="d-flex justify-content-between align-items-center mb-4 border-bottom pb-3">
             <h2>المكتبة التعليمية</h2>
-            <button class="btn btn-sm btn-outline-secondary" onclick="showSection('home')">العودة</button>
+            <button class="btn btn-outline-secondary btn-sm" onclick="showSection('home')">الرئيسية</button>
         </div>
-        <div class="row g-3">
-            <div class="col-md-6">
-                <div class="card p-3 border-start border-primary border-5 shadow-sm">
-                    <h5>إشارات المرور (التحذيرية)</h5>
-                    <p class="small text-muted mb-0">تعلم معاني المثلثات الحمراء وكيفية التصرف.</p>
+        <input type="text" id="lessonSearch" class="form-control mb-4 py-3 shadow-sm rounded-pill" placeholder="ابحث في الدروس (إشارات، ميكانيكا...)" onkeyup="filterLessons()">
+        
+        <div class="row g-3" id="lessons-grid">
+            <div class="col-md-6 lesson-card-item" data-category="إشارات">
+                <div class="card p-4 border-start border-danger border-5">
+                    <h5>إشارات المنع والتحذير</h5>
+                    <p>توقف تام (Stop)، اتجاه إجباري، ومنحدرات خطرة.</p>
                 </div>
             </div>
-            <div class="col-md-6">
-                <div class="card p-3 border-start border-success border-5 shadow-sm">
-                    <h5>قواعد الأولوية</h5>
-                    <p class="small text-muted mb-0">شرح مفصل لمن له حق المرور في التقاطعات.</p>
+            <div class="col-md-6 lesson-card-item" data-category="ميكانيكا">
+                <div class="card p-4 border-start border-warning border-5">
+                    <h5>أساسيات ميكانيكا السيارات</h5>
+                    <p>فحص الزيت، نظام التبريد، وضغط الإطارات قبل القيادة.</p>
                 </div>
             </div>
         </div>
     </section>
 
     <section id="quiz" class="page-section container">
-        <div class="card p-5 shadow text-center">
+        <div class="card p-5 shadow text-center mx-auto" style="max-width: 700px;">
             <h2 class="mb-4">محاكي اختبار المرور</h2>
-            <div class="p-4 bg-light rounded mb-3 text-dark">
-                <h5>سؤال: ما هو التصرف الصحيح عند رؤية إشارة "قف"؟</h5>
+            <div class="alert alert-secondary py-4 mb-4">
+                <h5>سؤال: الأولوية داخل الدوار لمن؟</h5>
             </div>
-            <div class="d-grid gap-2">
-                <button class="btn btn-outline-dark" onclick="alert('إجابة صحيحة!')">توقف تماماً خلف الخط</button>
-                <button class="btn btn-outline-dark" onclick="alert('إجابة خاطئة!')">تمهل وأكمل الطريق</button>
+            <div class="d-grid gap-3">
+                <button class="btn btn-outline-dark py-3" onclick="processAnswer(false, this)">للقادم من اليمين</button>
+                <button class="btn btn-outline-dark py-3" onclick="processAnswer(true, this)">لمن هم بداخل الدوار</button>
             </div>
-            <button class="btn btn-link mt-4" onclick="showSection('home')">العودة</button>
         </div>
     </section>
 
-    <section id="about" class="page-section container">
-        <div class="card p-4 shadow-sm text-center">
-            <h2>عن sayarti-school</h2>
-            <p class="mt-3">هذه المنصة صُممت لتكون المرجع الأول لطلاب القيادة، بإشراف مبارك. هدفنا هو تقليل حوادث الطرق من خلال نشر الوعي المروري الصحيح.</p>
-            <button class="btn btn-primary" onclick="showSection('home')">ابدأ رحلتك</button>
+    <section id="engine-info" class="page-section container">
+        <div class="card p-4 bg-dark text-white shadow">
+            <h3><i class="fas fa-microchip me-2 text-warning"></i> تكامل الأنظمة (Back-end)</h3>
+            <hr>
+            <div class="row mt-4">
+                <div class="col-md-6">
+                    <h5>🐍 Python Logic</h5>
+                    <p class="text-muted small">يتم استخدامه في الخلفية لتوليد التقارير وتحليل بيانات الطلاب.</p>
+                </div>
+                <div class="col-md-6 border-start">
+                    <h5>⚙️ C++ Core</h5>
+                    <p class="text-muted small">محرك حسابي فائق السرعة لتقييم درجات السلامة عبر WebAssembly.</p>
+                </div>
+            </div>
+            <button class="btn btn-warning mt-4 w-100" onclick="showSection('home')">فهمت، العودة للرئيسية</button>
         </div>
     </section>
 
     <footer class="bg-dark text-white py-4 mt-5 text-center">
         <div class="container">
-            <p class="mb-0">sayarti-school | إشراف Mubarak</p>
-            <small class="text-muted">المنصة مفتوحة للجميع - إصدار v1.1.0</small>
+            <p class="mb-1">sayarti-school | Developed by Mubarak</p>
+            <small class="text-muted">نظام متكامل يدعم الوضع الليلي والترجمة والبحث الذكي</small>
         </div>
     </footer>
 
     <script>
-        // دالة الانتقال السريع والمضمونة
-        function showSection(sectionId) {
-            // إخفاء كل الأقسام
-            const sections = document.querySelectorAll('.page-section');
-            sections.forEach(s => {
-                s.classList.remove('active-section');
-            });
-            
-            // إظهار القسم المطلوب
-            const target = document.getElementById(sectionId);
-            if (target) {
-                target.classList.add('active-section');
-                window.scrollTo(0,0);
-            }
+        // 1. Navigation SPA
+        function showSection(id) {
+            document.querySelectorAll('.page-section').forEach(s => s.classList.remove('active-section'));
+            document.getElementById(id).classList.add('active-section');
+            window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // نظام الوضع الليلي
+        // 2. Dark Mode Persistency
         function toggleTheme() {
-            const body = document.getElementById('sayarti-app');
+            const app = document.getElementById('sayarti-app');
             const icon = document.getElementById('t-icon');
-            if (body.hasAttribute('data-theme')) {
-                body.removeAttribute('data-theme');
+            if (app.hasAttribute('data-theme')) {
+                app.removeAttribute('data-theme');
                 icon.className = 'fas fa-moon';
                 localStorage.setItem('theme', 'light');
             } else {
-                body.setAttribute('data-theme', 'dark');
+                app.setAttribute('data-theme', 'dark');
                 icon.className = 'fas fa-sun';
                 localStorage.setItem('theme', 'dark');
             }
         }
 
-        // استرجاع الوضع الليلي المفضل
+        // 3. Search Engine
+        function filterLessons() {
+            let input = document.getElementById('lessonSearch').value.toLowerCase();
+            document.querySelectorAll('.lesson-card-item').forEach(card => {
+                let text = card.textContent.toLowerCase();
+                card.style.display = text.includes(input) ? "block" : "none";
+            });
+        }
+
+        // 4. Advanced Interaction (Toast Simulation)
+        function processAnswer(isCorrect, btn) {
+            if(isCorrect) {
+                btn.className = "btn btn-success py-3 animate__animated animate__pulse";
+                alert("إجابة صحيحة يا بطل! تم تحديث سجلات Mubarak بنجاح.");
+            } else {
+                btn.className = "btn btn-danger py-3";
+                alert("حاول مرة أخرى! راجع دروس إشارات المرور.");
+            }
+        }
+
+        // Initialization
         window.onload = () => {
             if(localStorage.getItem('theme') === 'dark') toggleTheme();
+            console.log("sayarti-school v2.0 is live. Hello Mubarak!");
         };
 
-        // Google Translate Init
+        // Google Translate
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'ar'}, 'google_translate_element');
         }

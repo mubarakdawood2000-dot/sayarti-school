@@ -4,9 +4,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>sayarti-school | أكاديمية مبارك لعلوم القيادة</title>
-    <meta name="description" content="منصة sayarti-school v1.1.0: الدليل الشامل لتعليم القيادة واختبارات المرور. متاح للجميع مجاناً.">
+    <meta name="description" content="sayarti-school v1.1.0: منصة تعليمية مجانية لتعلم القيادة واختبارات المرور بإشراف مبارك.">
     <meta name="author" content="Mubarak">
-    
+
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.rtl.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     
@@ -14,26 +14,26 @@
         :root { --primary: #2c3e50; --accent: #e67e22; --bg: #f8f9fa; --text: #333; --card: #fff; }
         [data-theme="dark"] { --bg: #121212; --text: #e0e0e0; --card: #1e1e1e; --primary: #34495e; }
 
-        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', system-ui, sans-serif; transition: all 0.3s ease; scroll-behavior: smooth; overflow-x: hidden; }
+        body { background-color: var(--bg); color: var(--text); font-family: 'Segoe UI', Tahoma, sans-serif; transition: 0.3s; scroll-behavior: smooth; }
         
-        /* Navigation & Transitions */
-        .page-section { display: none; animation: fadeIn 0.5s ease-in-out; }
-        .active-section { display: block; }
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+        /* نظام التحكم في الأقسام */
+        .page-section { display: none; padding: 40px 0; min-height: 80vh; }
+        .active-section { display: block !important; animation: fadeIn 0.4s ease; }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
-        .nav-link { cursor: pointer; font-weight: 500; }
-        .card { background-color: var(--card); border: none; border-radius: 15px; transition: 0.3s; color: var(--text); }
+        .navbar { background-color: var(--primary); box-shadow: 0 2px 10px rgba(0,0,0,0.2); }
+        .hero { background: linear-gradient(135deg, var(--primary), #1a252f); color: white; padding: 80px 0; border-radius: 0 0 40px 40px; }
+        .card { background-color: var(--card); border: none; border-radius: 15px; transition: 0.3s; color: var(--text); cursor: pointer; }
         .card:hover { transform: translateY(-5px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
-        
-        .hero { background: linear-gradient(45deg, var(--primary), #34495e); color: white; padding: 60px 0; border-radius: 0 0 50px 50px; }
-        #google_translate_element { display: inline-block; }
+        .btn-accent { background-color: var(--accent); color: white; border-radius: 25px; border: none; padding: 10px 30px; }
+        #google_translate_element { display: inline-block; vertical-align: middle; }
     </style>
 </head>
 <body>
 
-    <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container">
-            <a class="navbar-brand fw-bold" onclick="showSection('home')">🚗 sayarti-school</a>
+            <a class="navbar-brand fw-bold" href="javascript:void(0)" onclick="showSection('home')">🚗 sayarti-school</a>
             <div class="d-flex align-items-center gap-3">
                 <div id="google_translate_element"></div>
                 <div class="text-warning fs-5" style="cursor:pointer" onclick="toggleTheme()"><i class="fas fa-moon" id="t-icon"></i></div>
@@ -44,96 +44,106 @@
     <section id="home" class="page-section active-section">
         <header class="hero text-center mb-5">
             <div class="container">
-                <h1 class="display-4 fw-bold">مرحباً بك في sayarti-school</h1>
-                <p class="lead">المنصة التعليمية المجانية المفتوحة للجميع بإشراف Mubarak</p>
-                <div class="mt-4">
-                    <button class="btn btn-light btn-lg px-5 rounded-pill" onclick="showSection('lessons')">ابدأ التعلم الآن</button>
-                </div>
+                <h1 class="display-4 fw-bold">أكاديمية مبارك الرقمية</h1>
+                <p class="lead">تعلم قيادة السيارات باحترافية وبشكل مجاني تماماً</p>
+                <button class="btn btn-accent btn-lg mt-3" onclick="showSection('lessons')">تصفح الدروس الآن</button>
             </div>
         </header>
-
         <div class="container">
-            <div class="row g-4 text-center">
+            <div class="row g-4">
                 <div class="col-md-4" onclick="showSection('lessons')">
-                    <div class="card p-4 shadow-sm h-100">
+                    <div class="card p-4 text-center shadow-sm">
                         <i class="fas fa-book-open fa-3x text-primary mb-3"></i>
-                        <h3>المنهج النظري</h3>
-                        <p>كافة قواعد المرور وإشارات الطريق مجاناً.</p>
+                        <h4>المكتبة التعليمية</h4>
+                        <p>شرح إشارات المرور وقوانين السير.</p>
                     </div>
                 </div>
                 <div class="col-md-4" onclick="showSection('quiz')">
-                    <div class="card p-4 shadow-sm h-100">
-                        <i class="fas fa-tasks fa-3x text-success mb-3"></i>
-                        <h3>اختبارات ذكية</h3>
-                        <p>اختبر مهاراتك وانتقل لمستوى الاحتراف.</p>
+                    <div class="card p-4 text-center shadow-sm">
+                        <i class="fas fa-vial fa-3x text-success mb-3"></i>
+                        <h4>اختبارات محاكاة</h4>
+                        <p>اختبر معلوماتك قبل الامتحان الحقيقي.</p>
                     </div>
                 </div>
                 <div class="col-md-4" onclick="showSection('about')">
-                    <div class="card p-4 shadow-sm h-100">
+                    <div class="card p-4 text-center shadow-sm">
                         <i class="fas fa-info-circle fa-3x text-warning mb-3"></i>
-                        <h3>عن المنصة</h3>
-                        <p>رؤية Mubarak لتطوير الوعي المروري.</p>
+                        <h4>عن sayarti-school</h4>
+                        <p>تعرف على رؤية Mubarak التعليمية.</p>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="lessons" class="page-section container my-5">
-        <h2 class="text-center mb-4">المكتبة التعليمية</h2>
-        <div class="input-group mb-4 shadow-sm">
-            <span class="input-group-text bg-white border-0"><i class="fas fa-search"></i></span>
-            <input type="text" class="form-control border-0" placeholder="ابحث عن درس (إشارات، ميكانيكا...)" onkeyup="filterLessons(this.value)">
+    <section id="lessons" class="page-section container">
+        <div class="d-flex justify-content-between align-items-center mb-4">
+            <h2>المكتبة التعليمية</h2>
+            <button class="btn btn-sm btn-outline-secondary" onclick="showSection('home')">العودة</button>
         </div>
-        <div class="row g-3" id="lessons-list">
-            <div class="col-md-6 l-item" data-name="إشارات المرور">
-                <div class="card p-3 shadow-sm border-start border-primary border-5">
-                    <h5>إشارات المنع والتحذير</h5>
-                    <p class="small text-muted mb-0">شرح مفصل لجميع أنواع الإشارات.</p>
+        <div class="row g-3">
+            <div class="col-md-6">
+                <div class="card p-3 border-start border-primary border-5 shadow-sm">
+                    <h5>إشارات المرور (التحذيرية)</h5>
+                    <p class="small text-muted mb-0">تعلم معاني المثلثات الحمراء وكيفية التصرف.</p>
                 </div>
             </div>
-            <div class="col-md-6 l-item" data-name="قواعد الأولوية">
-                <div class="card p-3 shadow-sm border-start border-success border-5">
-                    <h5>قواعد الأولوية في التقاطعات</h5>
-                    <p class="small text-muted mb-0">من يمر أولاً؟ تعلم القواعد الصحيحة.</p>
+            <div class="col-md-6">
+                <div class="card p-3 border-start border-success border-5 shadow-sm">
+                    <h5>قواعد الأولوية</h5>
+                    <p class="small text-muted mb-0">شرح مفصل لمن له حق المرور في التقاطعات.</p>
                 </div>
             </div>
-        </div>
-        <div class="text-center mt-5">
-            <button class="btn btn-outline-secondary" onclick="showSection('home')">العودة للرئيسية</button>
         </div>
     </section>
 
-    <section id="quiz" class="page-section container my-5">
-        <div class="card p-5 text-center shadow">
-            <h2>محرك الاختبارات التجريبية</h2>
-            <p>هذا القسم متاح للجميع للممارسة الفورية.</p>
-            <div class="alert alert-info">سؤال: الأولوية داخل الدوار لمن؟</div>
-            <button class="btn btn-primary m-2">للقادم من اليمين</button>
-            <button class="btn btn-success m-2">لمن هم بداخل الدوار</button>
-            <hr>
-            <button class="btn btn-link text-decoration-none" onclick="showSection('home')">إغلاق الاختبار</button>
+    <section id="quiz" class="page-section container">
+        <div class="card p-5 shadow text-center">
+            <h2 class="mb-4">محاكي اختبار المرور</h2>
+            <div class="p-4 bg-light rounded mb-3 text-dark">
+                <h5>سؤال: ما هو التصرف الصحيح عند رؤية إشارة "قف"؟</h5>
+            </div>
+            <div class="d-grid gap-2">
+                <button class="btn btn-outline-dark" onclick="alert('إجابة صحيحة!')">توقف تماماً خلف الخط</button>
+                <button class="btn btn-outline-dark" onclick="alert('إجابة خاطئة!')">تمهل وأكمل الطريق</button>
+            </div>
+            <button class="btn btn-link mt-4" onclick="showSection('home')">العودة</button>
+        </div>
+    </section>
+
+    <section id="about" class="page-section container">
+        <div class="card p-4 shadow-sm text-center">
+            <h2>عن sayarti-school</h2>
+            <p class="mt-3">هذه المنصة صُممت لتكون المرجع الأول لطلاب القيادة، بإشراف مبارك. هدفنا هو تقليل حوادث الطرق من خلال نشر الوعي المروري الصحيح.</p>
+            <button class="btn btn-primary" onclick="showSection('home')">ابدأ رحلتك</button>
         </div>
     </section>
 
     <footer class="bg-dark text-white py-4 mt-5 text-center">
         <div class="container">
-            <p class="mb-1">sayarti-school | Developed by Mubarak</p>
-            <p class="small text-muted mb-0">إصدار v1.1.0 - كود نظيف وسريع (Enterprise Edition)</p>
+            <p class="mb-0">sayarti-school | إشراف Mubarak</p>
+            <small class="text-muted">المنصة مفتوحة للجميع - إصدار v1.1.0</small>
         </div>
     </footer>
 
     <script>
-        // 1. نظام الانتقال السريع (SPA Logic)
+        // دالة الانتقال السريع والمضمونة
         function showSection(sectionId) {
-            document.querySelectorAll('.page-section').forEach(section => {
-                section.classList.remove('active-section');
+            // إخفاء كل الأقسام
+            const sections = document.querySelectorAll('.page-section');
+            sections.forEach(s => {
+                s.classList.remove('active-section');
             });
-            document.getElementById(sectionId).classList.add('active-section');
-            window.scrollTo(0,0);
+            
+            // إظهار القسم المطلوب
+            const target = document.getElementById(sectionId);
+            if (target) {
+                target.classList.add('active-section');
+                window.scrollTo(0,0);
+            }
         }
 
-        // 2. نظام الوضع الليلي الذكي
+        // نظام الوضع الليلي
         function toggleTheme() {
             const body = document.getElementById('sayarti-app');
             const icon = document.getElementById('t-icon');
@@ -148,21 +158,12 @@
             }
         }
 
-        // 3. محرك البحث اللحظي
-        function filterLessons(query) {
-            const items = document.querySelectorAll('.l-item');
-            items.forEach(item => {
-                const name = item.getAttribute('data-name');
-                item.style.display = name.includes(query) ? 'block' : 'none';
-            });
-        }
-
-        // 4. استرجاع الإعدادات عند التحميل
+        // استرجاع الوضع الليلي المفضل
         window.onload = () => {
             if(localStorage.getItem('theme') === 'dark') toggleTheme();
         };
 
-        // 5. Google Translate Init
+        // Google Translate Init
         function googleTranslateElementInit() {
             new google.translate.TranslateElement({pageLanguage: 'ar'}, 'google_translate_element');
         }
